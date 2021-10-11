@@ -1,0 +1,34 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<html lang="en">
+<head>
+    <title>{{title}}</title>
+<!--    {% if messages %}-->
+<!--    {% for message in messages %}-->
+<!--    <script>-->
+<!--    alert("{{ message }}");-->
+<!--    </script>-->
+<!--    {% endfor %}-->
+<!--    {% endif %}-->
+</head>
+<body>
+<ul>
+    <li><a href="{% url 'index' %}">Home</a></li>
+    {% if user.is_authenticated %}
+    <li><a href="{% url 'logout' %}">Logout</a></li>
+    {% else %}
+    <li><a href="{% url 'register' %}"> Sign up</a></li>
+    <li><a href="{% url 'login' %}"> Log in</a></li>
+    {% endif %}
+</ul>
+<div>
+    {% block start%}
+    {% if user.is_authenticated %}
+    <center><h1>welcome back {{user.username}}!</h1></center>
+    {% else %}
+    <center><h1>log in dear user </h1></center>
+    {% endif %}
+    {% endblock %}
+</div>
+</body>
+</html>
