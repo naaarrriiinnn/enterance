@@ -5,14 +5,23 @@ from django.contrib.auth.forms import AuthenticationForm
 from .forms import UserRegisterForm
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
+import qrcode
+import qrcode.image.svg
+from io import BytesIO
+
+from .models import QrCode
 
 
 def index(request):
-    return render(request, 'index.html', {'title': 'index'})
+    return render(request, 'index.html', {'index': 'index'})
 
 
 def register(request):
     if request.method == 'POST':
+        N = request.POST['name']
+        QrCode.objects.create(url=N)
+        qr_code = QrCode.objects.all()
+
         form = UserRegisterForm(request.POST) or None
         if form.is_valid():
             username = request.POST.get('username')

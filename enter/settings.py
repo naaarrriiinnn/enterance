@@ -1,6 +1,6 @@
-import os
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+import os.path
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 'user',
+    'QR',
 ]
 
 MIDDLEWARE = [
@@ -118,8 +119,9 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_root")
 
 LOGIN_REDIRECT_URL = "index"
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

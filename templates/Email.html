@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<title>to you </title>
 		<meta charset="utf-8">
 	</head>
 	<body>
@@ -9,7 +10,18 @@
 				<h2 >Thank you for your  registration</h2>
 				<hr>
 				<p>Hi {{username}} </p>
+				<hr>
+				<form method="POST">
+					 {% csrf_token %}
+					 <input type="email" placeholder="email PLEASE" required name="email">
+					 <button type= "submit" >get qrcode</button>
+			    </form>
+				 {% for qr in qr_code %}
+				 <img src="{{qr.image.email}}"/><br>
+				 {%endfor%}
 			</section>
 		</div>
 	</body>
 </html>
+
+
